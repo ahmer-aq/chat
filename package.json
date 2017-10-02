@@ -36,6 +36,5 @@
         "ionic": "3.9.2",
         "typescript": "2.3.3"
     },
-    "description": "An Ionic project",
-
+    "description": "An Ionic project"
 }
