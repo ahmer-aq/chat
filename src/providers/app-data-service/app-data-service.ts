@@ -13,7 +13,7 @@ export class AppDataServiceProvider {
   public places;
   // public ApiRootURL = 'http://localhost/markr/public/';
   // public ApiRootURL = 'http://markr-env-1.jwy6dmy2vb.us-east-1.elasticbeanstalk.com/';
-  public ApiRootURL = 'http://ahmeraq.com/chat/public/';
+  public ApiRootURL = 'https://ahmeraq.com/chat/public/';
   spinner;
   user_id;
 
