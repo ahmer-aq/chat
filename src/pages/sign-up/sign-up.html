@@ -15,11 +15,20 @@
 			<ion-row class="center-div">
 	            <div class="outter">
 
-	            <ion-icon *ngIf="!profile_picture" name="ios-contact" class="center-div user-font-image"  (click)="openGallery()"></ion-icon>
+	            <ion-icon *ngIf="!profile_picture" name="ios-contact" class="center-div user-font-image"></ion-icon>
 
-	            <div *ngIf="!profile_picture" class="grey-color" (click)="openGallery()" ><em><small>click to upload photo</small></em></div>
+	            <div *ngIf="!profile_picture" class="grey-color"  >
+	            	<em>
+	            		<small>
+	            		
+	            		 <!-- <input type="file" (ionChange)="image($event)"/> -->
+	            		 <input type="file" accept="image/*" (change)="changeListener($event)">
+	            		 click to upload photo
+	            		</small>
+	            	</em>
+	            </div>
 
-	           	<img src="{{profile_picture}}" class="image-circle-signup" id="profile_picture" *ngIf="profile_picture" (click)="openGallery()"/>
+	           	<img src="{{profile_picture}}" class="image-circle-signup" id="profile_picture" *ngIf="profile_picture"/>
 
 	            </div>   
 	    	</ion-row>
@@ -30,6 +39,7 @@
 				<ion-label floating>Full Name</ion-label>
 				<ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
 			</ion-item>	
+			{{image}}
 				
 			<ion-item>
 				<ion-label floating>Email or Username</ion-label>
@@ -49,11 +59,11 @@
 					        <ion-icon name="md-log-in">&nbsp;&nbsp; <span>Sign Up</span></ion-icon>
 						</button>
 				    </ion-col>
-
+<!-- 
 
 					<ion-col col-12>
 						<button class="loginBtn loginBtn--facebook center-div" (click)="facebookSignUp()">Signup with Facebook</button>
-					</ion-col>			    
+					</ion-col>		 -->	    
 				</ion-row>
 			</ion-grid>
 		</ion-list>

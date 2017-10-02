@@ -83,10 +83,7 @@ export class MessagesListPage
 
   deleteFriend(friend_id)
   {
-    // console.log('delete :'+ friend_id);
-  
-      this.DataService.deleteFriendRequest(this.user_id, friend_id);
-      this.storage.set('friendList', null);
+
 
   }
   friendProfile(friend_id)

@@ -33,10 +33,7 @@ export class FollowBackPage
       });
     }
 
-  deleteFriend(user_id, friend_id)
-  {
-	  this.DataService.deleteFriendRequest(user_id, friend_id);
-  }
+
   followBack(user_id, friend_id)
   {
 	  this.DataService.Follow(user_id, friend_id);

@@ -40,36 +40,7 @@ export class AppDataServiceProvider {
 		window.location.reload(true);
     	this.app.getRootNav().setRoot(HomePage);
 	}
-	GetAllUserPublicStoriesForMap(user_id)
-	{
-    	this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({});
-	    let options = new Headers({ headers: headers });
 
-		return new Promise(
-			resolve => 
-			{
-			    this.http
-		        .post(this.ApiRootURL + 'get-all-user-public-stories' , body)
-			    .map(res => res.json())
-			    .subscribe(
-			      	response => 
-			      	{
-
-						this.hideLoading();
-	            		this.statusCode({status:200, message:response.message});
-		      			this.storage.set('places', response);
-		      			resolve(response);
-		            },
-			        err => 
-			        {
-		            	this.hideLoading();
-	            		this.statusCode(err);
-	            	});
-	  		});
-	}
 
 	/* * * * * * * * * * * * * * * * * * * * * 
 					Login Section 
@@ -196,146 +167,7 @@ export class AppDataServiceProvider {
 	/* * * * * * * * * * * * * * * * * * * * * 
 				Social
 	/* * * * * * * * * * * * * * * * * * * * */
-	//FRIEND SECTION
-	// ADD : send-friend-request/{user_id}
 
-	sendFriendRequest(user_id, friend_id) // sendFriendRequest
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    body.append('friend_id', friend_id);
-	    let headers = new Headers({});
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => {
-		    this.http.post(this.ApiRootURL + 'send-friend-request' , body)
-		      .map(res => res.json())
-		      .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-					this.statusCode({status:200, message:response.message});
-		      		resolve(response);
-		      	},
-		       	err => 
-		       	{
-		      		this.hideLoading();
-	            	this.statusCode(err);
-	        	});
-	  	});
-	}
-
-	// VIEW
-	FriendList(user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({});
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => {
-		    this.http.post(this.ApiRootURL + 'friend-list' , body)
-		      .map(res => res.json())
-		      .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-		      		this.storage.set('friendList', null);
-					this.storage.set('friendList', response);
-	            	this.statusCode({status:200, message:response.message});
-		      		resolve(response);
-		      	},
-		       	err => 
-		       	{
-		      		this.hideLoading();
-	            	this.statusCode(err);
-		      	 	resolve('error');
-
-	        	});
-	  	});
-	}
-
-	deleteFriendRequest(user_id, friend_id)
-	{
-	    this.showLoading();
-		this.http.get(this.ApiRootURL + 'delete-friend-request/'+ user_id +'/delete/'+ friend_id)
-	      .map(res => res.json())
-	      .subscribe(response => 
-			{
-				this.hideLoading();
-				this.statusCode({status:200, message:response.message});
-				this.app.getRootNav().setRoot(HomePage);
-				
-			}, err => 
-	      	{
-		
-		      	this.hideLoading();
-		        this.statusCode(err);
-            });
-	}	
-
-	// REQUEST
-	showFriendsRequest(user_id)
-	{
-		this.showLoading();
-		return new Promise(resolve => {
-		    this.http.get(this.ApiRootURL + 'show-friends-request/' + user_id )
-		      .map(res => res.json())
-		      .subscribe(
-		      	response =>
-		      	{
-		      		this.hideLoading();
-					this.statusCode({status:200, message:response.message});
-		      		this.storage.set('friendRequestList', response);
-		      		resolve(response);
-		      	},
-		       	err =>
-		       	{
-		      		this.hideLoading();
-	            	this.statusCode(err);
-	        	});
-	  	});
-	}
-
-	acceptFriendRequest(user_id, friend_id)
-	{
-		this.showLoading();
-		this.http.get(this.ApiRootURL + 'accept-friend-request/' + user_id + '/accept/' + friend_id)
-	      .map(res => res.json())
-	      .subscribe(
-	      	response => 
-	      	{
-	      		this.hideLoading();
-				this.statusCode({status:200, message:response.message});
-    			this.app.getRootNav().setRoot(HomePage);
-	      	},
-            err => 
-            {
-				this.hideLoading();
-	            this.statusCode(err);
-            });
-	}
-	rejectFriendRequest(user_id, friend_id)
-	{
-		this.showLoading();
-		this.http.get(this.ApiRootURL + 'reject-friend-request/' + user_id + '/reject/' + friend_id)
-	      .map(res => res.json())
-	      .subscribe(
-	      	response => 
-	      	{
-	      		this.hideLoading();
-				this.statusCode({status:200, message:response.message});
-	        	this.app.getRootNav().setRoot(HomePage);
-	      	},
-            err => 
-            {
-				this.hideLoading();
-	            this.statusCode(err);
-            });
-	}
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 	SearchFriend(user_id, email)
 	{
@@ -468,30 +300,32 @@ export class AppDataServiceProvider {
 	        	});
 	  	});
 	}
-	GetMapModelUserData(user_id, locationOwnerId, locationId)
+	FriendList(user_id)
 	{
 		this.showLoading();
 	    let body = new FormData();
 	    body.append('user_id', user_id);
-	    body.append('locationOwnerId', locationOwnerId);
-	    body.append('locationId', locationId);
 	    let headers = new Headers({});
 	    let options = new Headers({ headers: headers });
 
 		return new Promise(resolve => {
-		    this.http.post(this.ApiRootURL + 'get-map-model-user-data' , body)
+		    this.http.post(this.ApiRootURL + 'friend-list' , body)
 		      .map(res => res.json())
 		      .subscribe(
 		      	response => 
 		      	{
 		      		this.hideLoading();
-					this.statusCode({status:200, message:response.message});
+		      		this.storage.set('friendList', null);
+					this.storage.set('friendList', response);
+	            	this.statusCode({status:200, message:response.message});
 		      		resolve(response);
 		      	},
 		       	err => 
 		       	{
 		      		this.hideLoading();
 	            	this.statusCode(err);
+		      	 	resolve('error');
+
 	        	});
 	  	});
 	}
@@ -593,276 +427,8 @@ export class AppDataServiceProvider {
 		      	err => {});
 	  	});
 	}
-	/* * * * * * * * * * * * * * * * * * * * * 
-				User Story & Timeline
-	/* * * * * * * * * * * * * * * * * * * * */
-	GetUserStories(user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
- 		return new Promise(resolve => {
-	    this.http.post(this.ApiRootURL + 'get-user-story', body)
-	      .map(res => res.json())
-	      .subscribe(
-	      	response => {
-	      		this.hideLoading();
-				this.statusCode({status:200, message:response.message});
-	      		this.storage.set('mystory', response);
-	      		resolve(response);
-	      },
-	       err => {
-	      		this.hideLoading();
-            	this.statusCode(err);
-        	});
-        });
-	}
 
 
-	AddUserStory( user_id, image, title, description, latitude, longitude, status)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    body.append('image', image);
-	    body.append('title', title);
-	    body.append('description', description);
-	    body.append('latitude', latitude);
-	    body.append('longitude', longitude);
-	    body.append('status', status);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
- 		return new Promise(resolve => {
-	    this.http.post(this.ApiRootURL + 'add-user-story', body)
-	      .map(res => res.json())
-	      .subscribe(
-	      	response => 
-	      	{
-		      	this.hideLoading();
-				this.statusCode({status:200, message:response.message});
-		      	this.storage.set('mystory', response);
-			    this.app.getRootNav().setRoot(HomePage);
-		      	resolve(response);
-	      	},
-	       err => {
-            	this.hideLoading();
-            	this.statusCode(err);
-        	});
-        });
-	}
-
-	UserTimeline(user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
- 		return new Promise(resolve => {
-	    this.http.post(this.ApiRootURL + 'get-user-timeline', body)
-	      .map(res => res.json())
-	      .subscribe(
-	      	response => {
-	      		this.hideLoading();
-				this.statusCode({status:200, message:response.message});
-	      		this.storage.set('mystory', response);
-	      		resolve(response);
-	      },
-	       err => {
-	      		this.hideLoading();
-            	this.statusCode(err);
-        	});
-        });
-	}
-	/* * * * * * * * * * * * * * * * * * * * * 
-					Overlay 
-	/* * * * * * * * * * * * * * * * * * * * */
-	GetOverlay(user_id)
-	{
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => 
-		{
-
-		    this.http
-	        .post(this.ApiRootURL + 'get-overlay-image' , body)
-		    .map(res => res.json())
-		    .subscribe(
-		      	response => 
-		      	{
-					this.statusCode({status:200, message:response.message});
-		      		resolve(response);
-		      	},
-		       err => 
-		       {
-            		this.statusCode(err);
-	        	});
-	  	});
-	}
-
-	UploadOverlay(overlayImage, user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('overlay_image', overlayImage);
-	    body.append('user_id', user_id);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
- 		return new Promise(resolve => {
-		    
-	    this.http
-	        .post(this.ApiRootURL + 'upload-overlay-image', body)
-	        .map(res => res.json())
-	        .subscribe(
-	            response => 
-	            {
-	            	this.hideLoading();
-					this.statusCode({status:200, message:"Overlay Successfully Uploaded"});
-		      		resolve(response);
-	            },
-	            err => {
-	            	this.hideLoading();
-            		this.statusCode(err);
-	            }
-	        );
-	  	});
-	}
-	/* * * * * * * * * * * * * * * * * * * * * 
-					Location 
-	/* * * * * * * * * * * * * * * * * * * * */
-	GetLocation(user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => {
-
-		    this.http
-	        .post(this.ApiRootURL + 'get-location' , body)
-		    .map(res => res.json())
-		    .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-					this.statusCode({status:200, message:response.message});
-		      		this.storage.set('getUserLocation', response);
-		      		resolve(response);
-		      	},
-		       err => 
-		       {
-	            	this.hideLoading();
-            		this.statusCode(err);
-	        	});
-	  	});
-	}
-
-	DeleteLocation(user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => {
-
-		    this.http
-	        .post(this.ApiRootURL + 'delete-location' , body)
-		    .map(res => res.json())
-		    .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-					this.statusCode({status:200, message:response.message});
-		      		resolve(response);
-		      	},
-		       	err => 
-		       	{
-	            	this.hideLoading();
-            		this.statusCode(err);
-	        	});
-	  	});
-	}
-
-	AddLocation( user_id,google_address,street_address,city,state,postalCode,country,image,title,description,latitude,longitude)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    body.append('google_address', google_address);
-	    body.append('street_address', street_address);
-	    body.append('city', city);
-	    body.append('state', state);
-	    body.append('postalCode', postalCode);
-	    body.append('country', country);
-	    body.append('image', image);
-	    body.append('title', title);
-	    body.append('description', description);
-	    body.append('latitude', latitude);
-	    body.append('longitude', longitude);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => {
-
-		    this.http
-	        .post(this.ApiRootURL + 'add-location' , body)
-		    .map(res => res.json())
-		    .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-					this.statusCode({status:200, message:"Location is succesfully added"});
-	    			this.app.getRootNav().setRoot(HomePage);
-		      		resolve(response);
-		      },
-		       	err => 
-		       	{
-	            	this.hideLoading();
-            		this.statusCode(err);
-	        	});
-	  	});
-	}
-
-	AddUserImageLocation( user_id,image,latitude,longitude)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    body.append('image', image);
-	    body.append('latitude', latitude);
-	    body.append('longitude', longitude);
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve => {
-
-		    this.http
-	        .post(this.ApiRootURL + 'add-user-image-location' , body)
-		    .map(res => res.json())
-		    .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-					this.statusCode({status:200, message:"Location is succesfully added on Map"});
-	    			this.app.getRootNav().setRoot(HomePage);
-		      		resolve(response);
-		      	},
-		       	err => 
-		       	{
-	            	this.hideLoading();
-            		this.statusCode(err);
-	        	});
-	  	});
-	}
 
 	/* * * * * * * * * * * * * * * * * * * * * 
 				Other
@@ -922,38 +488,6 @@ export class AppDataServiceProvider {
 	        	});
 	  	});
 	}
-	OnboardingStatusChange(user_id)
-	{
-		this.showLoading();
-	    let body = new FormData();
-	    body.append('user_id', user_id);
-	    body.append('onboarding', '1');
-	    let headers = new Headers({ });
-	    let options = new Headers({ headers: headers });
-
-		return new Promise(resolve =>
-		{
-
-		    this.http
-	        .post(this.ApiRootURL + 'onboarding-status-change' , body)
-		    .map(res => res.json())
-		    .subscribe(
-		      	response => 
-		      	{
-		      		this.hideLoading();
-					this.storage.set('user', response);
-					this.statusCode({status:200, message:"Welcome to Markr"});
-	    			this.app.getRootNav().setRoot(HomePage);
-		      		resolve(response);
-		      	},
-		       	err => 
-		       	{
-	            	this.hideLoading();
-            		this.statusCode(err);
-	        	});
-	  	});
-	}
-
 	/* * * * * * * * * * * * * * * * * * * * * 
 			response Message 
 	/* * * * * * * * * * * * * * * * * * * * */

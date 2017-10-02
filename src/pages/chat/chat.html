@@ -59,7 +59,10 @@
       
       <button ion-button icon-right color="royal" (click)="emojisToolToggle()"><ion-icon name="ios-happy-outline"></ion-icon></button>
 
-      <button ion-button icon-right color="royal" (click)="sendImage()"><ion-icon name="ios-image-outline"></ion-icon></button>
+      <!-- <button ion-button icon-right color="royal"> -->
+        <!-- <ion-icon name="ios-attach-outline"></ion-icon> -->
+        <input type="file" accept="image/*" (change)="sendImage($event)">
+      <!-- </button> -->
 
       <button ion-button icon-right color="royal" (click)="sendMessage()">
         Send
