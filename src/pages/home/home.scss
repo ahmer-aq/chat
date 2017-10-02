@@ -1,0 +1,17 @@
+$bg-color : #47525E;
+page-home {
+	#canvas{display:none}
+}
+.bg-color{
+background-color: $bg-color;
+}
+
+.button-home{color:#9FA7B0;display: block; margin-left: 20%;font-size: 16px;
+	background-color: $bg-color;font-weight: bold;}
+.MainButton{background-color: #586574}
+.button-md:hover:not(.disable-hover) {
+    background-color: #8493a5;
+}
+
+.camera-button{font-size: 60px!important; color: #fff}
+.navigate-button{font-size: 30px!important; color: #fff}

@@ -1,0 +1,36 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding class="bg-color">
+	    <ion-grid>
+			<ion-row class="center-div padt40">
+	            <div class="outter">
+	            	<img src="{{userData.profile_picture}}" class="image-circle" *ngIf="userData.profile_picture"/>
+	            </div>   
+	            <h1  class="center" *ngIf="userData.name" >{{userData.name}}</h1>
+	            <span class="center display-block" >Maybe some status</span>
+		    </ion-row>
+	    </ion-grid>
+
+	    <ion-grid>
+	        <ion-row >
+	            <ion-col col-4 class="center" *ngIf="userData.following">
+	              <h3>{{userData.following}} <br/> <span>FOLLOWING</span></h3>
+	            </ion-col>
+
+	            <ion-col col-4 class="center" *ngIf="userData.follower">
+	              <h3>{{userData.follower}} <br/> <span>FOLLOWERS</span></h3>
+	            </ion-col>
+	            
+	            <ion-col col-4 class="center" *ngIf="userData.profile_views">
+	              <h3>{{userData.profile_views}} <br/> <span>VIEWS</span></h3>
+	            </ion-col>
+	        </ion-row>
+	    </ion-grid>
+</ion-content>

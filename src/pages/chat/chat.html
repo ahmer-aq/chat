@@ -1,0 +1,71 @@
+
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><strong style="position: absolute;line-height: 35px;">{{name}}</strong></ion-title>
+    <img src="{{image}}" class="ion-avatar-header" end>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="chatBg" padding #myContent>
+
+
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+	      	<span *ngIf="text">
+		        <div class="bubble {{message.direction}} {{message.type}}" *ngFor="let message of text">
+		            <span *ngIf="message.type == 'text'">{{message.message}}
+		            	<ion-spinner name="bubbles" *ngIf="message.sentStatus"></ion-spinner>
+		            </span>
+
+		            <span *ngIf="message.type == 'sticker'" style="width: 50%;text-align: center;">
+		            	<img src="{{message.message}}" >
+		            	<ion-spinner name="bubbles" *ngIf="message.sentStatus"></ion-spinner>
+		            </span>
+
+		            <span *ngIf="message.type == 'image'" style="width: 50%;text-align: center;">
+			            <img src="{{message.message}}" (click)="imageViewer(message.message)">
+			            <ion-spinner name="bubbles" *ngIf="message.sentStatus"></ion-spinner>
+		            </span>
+                <span> {{message.created_at}}</span>
+                <!-- <span> {{message.created_at | moment:'M/D/YYYY h:m A'}}</span> -->
+                <!-- <span>{{moment([2007, 0, 29]).fromNow(true)}}</span> -->
+	          	</div>
+            </span>
+      </ion-col>          
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-grid id="emojisToolId"  *ngIf="emojisToolId">
+  <ion-row>
+    <ion-col col-3  *ngFor="let emoji of emojis; let i = index">
+      <img src="{{emoji}}" alt="" (click)="sendSticker(emoji)" >
+  </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input type="text" placeholder="type here..."  [(ngModel)]="message" (keyup.enter)="sendMessage()"></ion-input>
+    <ion-buttons end>
+      
+      <button ion-button icon-right color="royal" (click)="emojisToolToggle()"><ion-icon name="ios-happy-outline"></ion-icon></button>
+
+      <button ion-button icon-right color="royal" (click)="sendImage()"><ion-icon name="ios-image-outline"></ion-icon></button>
+
+      <button ion-button icon-right color="royal" (click)="sendMessage()">
+        Send
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+<canvas id="canvas" width={{canvasWidth}} height={{canvasHight}}></canvas>

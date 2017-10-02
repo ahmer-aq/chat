@@ -1,0 +1,41 @@
+page-search-user {
+
+	.user-name
+	{
+		font-weight: bold;
+		// position: absolute
+	}
+	.right
+	{
+		float: right
+	}
+	ion-icon 
+    {
+        font-size: 2.5em;
+        line-height: 20px
+    }
+	.action-sheet-md .action-sheet-icon
+	{
+	    font-size: 1.9em!important;
+	    font-weight: bold!important;
+	}
+	ion-spinner {
+	    position: initial;
+	    display: inline-block;
+	    width: 28px;
+	    height: 28px;
+	    display: inline;
+	}
+	.badge-md { background-color: #47525E; }
+	.time
+	{
+    	font-size: 0.8em;
+    	font-weight: bold;
+	}
+	.relation
+	{
+    	font-style: italic;
+    	display: block;
+    	font-size: 0.7em;
+	}
+}

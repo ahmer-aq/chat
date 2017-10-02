@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Follower List&nbsp;</ion-title>
+    <ion-spinner name="bubbles" *ngIf="waitingForRefresh"></ion-spinner>
+    <ion-buttons end>
+  </ion-buttons>
+  </ion-navbar>`
+</ion-header>
+
+<ion-content >
+	<ion-list *ngFor="let user of followerList; let i = index">
+	    <ion-item>
+
+			<ion-avatar item-start (click)="friendProfile(user.friend_id)">
+			<img src="{{user.profile_picture_thumb}}">
+			</ion-avatar>
+
+			<span class="user-name">
+				{{user.name}} 
+				<span class="relation">{{user.follow}}</span>
+			</span>
+
+			<span item-end text-center>
+				<ion-badge (click)="followBack(user.user_id, user.friend_id)">Follow</ion-badge>
+			</span>
+			
+
+			<!-- <ion-icon name="ios-more-outline" class="right" (click)="presentActionSheet(user.request_friend_id, user.name, user.profile_picture_thumb)" ></ion-icon> -->
+
+		</ion-item>
+	</ion-list>
+</ion-content>
+

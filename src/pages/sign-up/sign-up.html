@@ -1,0 +1,63 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sign up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding >
+	<div class="" no-padding>
+
+	    <ion-grid>
+			<ion-row class="center-div">
+	            <div class="outter">
+
+	            <ion-icon *ngIf="!profile_picture" name="ios-contact" class="center-div user-font-image"  (click)="openGallery()"></ion-icon>
+
+	            <div *ngIf="!profile_picture" class="grey-color" (click)="openGallery()" ><em><small>click to upload photo</small></em></div>
+
+	           	<img src="{{profile_picture}}" class="image-circle-signup" id="profile_picture" *ngIf="profile_picture" (click)="openGallery()"/>
+
+	            </div>   
+	    	</ion-row>
+	    </ion-grid>
+
+		<ion-list>
+			<ion-item>
+				<ion-label floating>Full Name</ion-label>
+				<ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+			</ion-item>	
+				
+			<ion-item>
+				<ion-label floating>Email or Username</ion-label>
+				<ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Password</ion-label>
+				<ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+			</ion-item>
+			<div padding></div>
+
+			<ion-grid>
+				<ion-row>
+				    <ion-col col-12>
+						<button ion-button block (click)="signUp()" class="MainButton">
+					        <ion-icon name="md-log-in">&nbsp;&nbsp; <span>Sign Up</span></ion-icon>
+						</button>
+				    </ion-col>
+
+
+					<ion-col col-12>
+						<button class="loginBtn loginBtn--facebook center-div" (click)="facebookSignUp()">Signup with Facebook</button>
+					</ion-col>			    
+				</ion-row>
+			</ion-grid>
+		</ion-list>
+    </div>
+
+</ion-content>
+<canvas id="canvas" width={{canvasWidth}} height={{canvasHight}}></canvas>

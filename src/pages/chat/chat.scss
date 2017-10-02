@@ -1,0 +1,113 @@
+page-chat
+{
+
+    $receiveBgColor :  #1BB9BC;
+    $sendBgColor    :  #F9F5F5;
+    $chatBg         :  #394F66;
+
+    .ion-avatar-header {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        float: right;
+        margin-right: 20px;
+    }
+    .chatBg{
+      background-color: $chatBg;
+      
+    }
+    .chat {
+        width: 400px;
+    }
+
+    .bubble{
+        background-color: #F2F2F2;
+        border-radius: 5px;
+        box-shadow: 0 0 6px rgba(158, 158, 158, 0.5);
+        display: inline-block;
+        padding: 10px 18px;
+        position: relative;
+        vertical-align: top;
+        clear: both;
+    }
+
+
+    // .bubble::before .sent{background-color: $sendBgColor!important;}
+    // .bubble::before .receive{background-color: $receiveBgColor!important}
+
+    .receive {
+        float: left;   
+        margin: 5px 45px 5px 20px;
+        background-color:$sendBgColor!important;        
+    }
+
+    .receive::before {
+        box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+        left: -9px;
+
+        background-color: $sendBgColor!important;;
+        content: "\00a0";
+        display: block;
+        height: 16px;
+        position: absolute;
+        top: 11px;
+        transform:             rotate( 29deg ) skew( -35deg );
+            -moz-transform:    rotate( 29deg ) skew( -35deg );
+            -ms-transform:     rotate( 29deg ) skew( -35deg );
+            -o-transform:      rotate( 29deg ) skew( -35deg );
+            -webkit-transform: rotate( 29deg ) skew( -35deg );
+        width:  20px;
+
+    }
+
+    .sent {
+        float: right;    
+        margin: 5px 20px 5px 45px; 
+        background-color: $receiveBgColor!important;        
+    }
+
+    .sent::before {
+        box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+        right: -9px;
+
+        background-color: $receiveBgColor!important;
+        content: "\00a0";
+        display: block;
+        height: 16px;
+        position: absolute;
+        top: 11px;
+        transform:             rotate( 29deg ) skew( -35deg );
+            -moz-transform:    rotate( 29deg ) skew( -35deg );
+            -ms-transform:     rotate( 29deg ) skew( -35deg );
+            -o-transform:      rotate( 29deg ) skew( -35deg );
+            -webkit-transform: rotate( 29deg ) skew( -35deg );
+        width:  20px;
+    }
+    ion-footer {
+
+        padding: 10px;
+    }
+    ion-toolbar {
+        position: relative;
+        z-index: 10;
+        border-radius: 30px 30px;
+    }
+    .sticker
+    {
+        background-color: rgba(57,79,102, 1)!important;
+        box-shadow: none;
+    }
+    .sticker::before
+    {
+        width:  0px!important
+
+    }
+    #emojisToolId
+    {
+        background-color: RGBA(71, 82, 94, 0.9);
+        position: fixed;
+        z-index: 100;
+    }
+    #canvas{display:none}
+    
+}

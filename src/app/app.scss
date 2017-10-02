@@ -1,0 +1,21 @@
+$bg-color : #47525E;
+.img-circle {
+	width:150px;
+	height:150px;
+	border-radius: 50%;
+	display: block;
+    margin: auto;
+}
+span{font-family: "Roboto", "Helvetica Neue", sans-serif!important}
+.center{text-align: center}
+.profile-name{font-weight: bold; line-height: 2em; font-style: italic;}
+
+.label {
+    color: $bg-color;
+    font-size: 18px;
+    font-weight: 500;
+}
+.centerDiv{
+		display: block;
+    margin: auto;
+}

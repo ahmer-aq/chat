@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Following List&nbsp;</ion-title>
+    <!-- <ion-spinner name="bubbles" *ngIf="waitingForRefresh"></ion-spinner> -->
+    <ion-buttons end>
+  </ion-buttons>
+  </ion-navbar>`
+</ion-header>
+
+
+<ion-content >
+<!-- <ion-searchbar (ionInput)="search($event)"></ion-searchbar> -->
+<ion-list *ngFor="let user of userFollowingList; let i = index">
+    <ion-item>
+      
+      <ion-avatar item-start (click)="friendProfile(user.friend_id)">
+        <img src="{{user.profile_picture_thumb}}">
+      </ion-avatar>
+      
+      <span class="user-name">{{user.name}}</span>
+
+     <ion-icon name="ios-more-outline" *ngIf="user.canChat" class="right" 
+     (click)="presentActionSheet(user.friend_id, user.name, user.profile_picture_thumb)" ></ion-icon>
+
+    <ion-icon name="ios-more-outline" *ngIf="!user.canChat" class="right" 
+     (click)="presentActionSheetWithoutChat(user.friend_id, user.name, user.profile_picture_thumb)" ></ion-icon>
+    </ion-item>
+   <!-- (click)="sendMessage(id[i], name, images[i])" text-->
+   <!-- (click)="deleteFriend(id[i]) ios-more-outline" -->
+</ion-list>
+</ion-content>
+

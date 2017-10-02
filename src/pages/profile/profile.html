@@ -1,0 +1,56 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+    <ion-buttons end>
+		<button ion-button icon-only *ngIf="canChat" (click)="openChat()"> <ion-icon name="ios-chatbubbles-outline"></ion-icon></button>
+	</ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding >
+	<div class="bg-color" no-padding *ngIf="userData">
+	    <ion-grid>
+			<ion-row class="center-div">
+            	<img src="{{userData.profile_picture}}" *ngIf="userData.profile_picture"/>
+            	<h1  class="center" *ngIf="userData.name" >{{userData.name}}</h1>
+            	<span class="center display-block" >Maybe some status</span>
+	    	</ion-row>
+	    </ion-grid>
+
+	    <ion-grid>
+	        <ion-row >
+	            <ion-col col-4 class="center">
+	              <h3>{{userData.following}} <br/> <span>FOLLOWING</span></h3>
+	            </ion-col>
+
+	            <ion-col col-4 class="center">
+	              <h3>{{userData.follower}} <br/> <span>FOLLOWERS</span></h3>
+	            </ion-col>
+	            
+	            <ion-col col-4 class="center">
+	              <h3>{{userData.profile_views}} <br/> <span>VIEWS</span></h3>
+	            </ion-col>
+	        </ion-row>
+	    </ion-grid>
+
+
+		<ion-card *ngFor="let post of userData.story; let i = index">
+		    <img src="{{post.image}}"/>
+		    <ion-card-content>
+		      <ion-card-title>
+		        {{post.title}}
+		        </ion-card-title>
+		      <p>
+		        {{post.description}}
+		      </p>
+		    </ion-card-content>
+		  </ion-card>
+
+    </div>
+
+</ion-content>
